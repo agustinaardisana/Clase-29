@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 29</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="card" data-nombre="empresario" data-sexo="mucho" data-edad="35">
+            <img src="http://www.placekeanu.com/200">
+            <div class="title">
+                <h4>Empresario</h4>
+            </div>
+        </div>
+
+        <div class="card" data-nombre="adolescente" data-sexo="moderado" data-edad="23">
+            <img src="http://www.placekeanu.com/300">
+            <div class="title">
+                <h4>Adolescente</h4>
+            </div>
+        </div>
+
+        <div class="card" data-nombre="sexy" data-sexo="mucho" data-edad="27">
+            <img src="http://www.placekeanu.com/400">
+            <div class="title">
+                <h4>Sexy</h4>
+            </div>
+        </div>
+
+        <div class="card" data-nombre="rebelde" data-sexo="poco" data-edad="23">
+            <img src="http://www.placekeanu.com/500">
+            <div class="title">
+                <h4>Rebelde</h4>
+            </div>
+        </div>
+
+    </div>
+    <form class="filtros">
+        <label for="filtro-nombre">
+            Nombre:
+            <input id="filtro-nombre" />
+        </label>
+        <label for="edad">
+            Edad:
+            <input id="edad" type="button" value="todos" name="edad" class="filtro-boton" data-edad="todos"/>
+            <input type="button" value="23" name="edad" class="filtro-boton" data-edad="23"/>
+            <input type="button" value="27" name="edad" class="filtro-boton" data-edad="27"/>
+            <input type="button" value="35" name="edad" class="filtro-boton" data-edad="35"/>
+        </label>
+        <label for="sexo">
+            Sexo:
+            <input id="sexo" type="radio" name="sexo" value="mucho" />
+            Mucho
+        </label>
+        <label for="sexo">
+            <input type="radio" name="sexo" value="poco" />
+            Poco
+        </label>
+        <label for="sexo">
+            <input type="radio" name="sexo" value="moderado" />
+            Moderado
+        </label>
+    </form>
+    <button id="filtrar">Borrar un gato</button>
+    <script src="index.js"></script>
+</body>
+
+</html>
