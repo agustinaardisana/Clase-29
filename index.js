@@ -1,6 +1,8 @@
 const cards = document.querySelectorAll('.card')
 const botonesFiltro = document.querySelectorAll('.filtro-boton')
 const filtroNombre = document.querySelector('#filtro-nombre')
+const checkboxSexo = document.querySelectorAll('input[type="radio"]')
+
 
 
 //FILTRO POR BOTON EDAD//
@@ -24,10 +26,7 @@ for (let boton of botonesFiltro) {
 // FILTRO POR INPUT //
 filtroNombre.oninput = () => {
     for (card of cards) {
-        const nombreTarjeta = card.dataset.nombre
-        const inputBusqueda = filtroNombre.value
-
-        if (nombreTarjeta.includes(inputBusqueda)) {
+        if (card.dataset.nombre.toLowerCase().includes(filtroNombre.value.toLowerCase())) {
             card.classList.remove('hidden')
         }
         else {
@@ -36,8 +35,7 @@ filtroNombre.oninput = () => {
     }
 }
 
-// FILTRO POR CHECKBOX SEXO//
-const checkboxSexo = document.querySelectorAll('input[type="radio"]')
+// FILTRO POR RADIO SEXO (MI SOLUCION)//
 
 for (checkbox of checkboxSexo) {
     checkbox.onclick = () => {
@@ -76,3 +74,25 @@ const filtrarPorSexo = () => {
         }
     }
 }
+
+// FILTRO POR RADIO SEXO (SOLUCION DE MALE)//
+// for (let radio of checkboxSexo) {
+//     radio.oninput = () => {
+//         for (let card of cards) {
+//            if (radio.value === 'i') {
+//                card.classList.remove('hidden')
+//            }
+//            else if (radio.checked) {
+//                if (card.dataset.sexo === radio.value) {
+//                 card.classList.remove('hidden')
+//                }
+//                else {
+//                 card.classList.add('hidden')
+//                }
+//            }
+//            else {
+//             card.classList.remove('hidden')
+//            }
+//         }
+//     }
+// }
