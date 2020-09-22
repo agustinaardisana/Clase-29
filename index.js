@@ -1,27 +1,7 @@
 const cards = document.querySelectorAll('.card')
-const botonesFiltro = document.querySelectorAll('.filtro-boton')
+const checkboxesFiltro = document.querySelectorAll('.filtro-boton')
 const filtroNombre = document.querySelector('#filtro-nombre')
 const checkboxSexo = document.querySelectorAll('input[type="radio"]')
-
-
-
-//FILTRO POR BOTON EDAD//
-for (let boton of botonesFiltro) {
-    boton.onclick = () => {
-        for (card of cards) {
-            if (card.dataset.edad === boton.dataset.edad) {
-                card.classList.remove('hidden')
-            }
-            else if (boton.dataset.edad === "todos") {
-                card.classList.remove('hidden')
-            }
-            else {
-                card.classList.add('hidden')
-            }
-        }
-    }
-
-}
 
 // FILTRO POR INPUT //
 filtroNombre.oninput = () => {
@@ -35,15 +15,74 @@ filtroNombre.oninput = () => {
     }
 }
 
-// FILTRO POR RADIO SEXO (MI SOLUCION)//
+//FILTRO POR BOTON EDAD (PRIMERA SOLUCION)//
+// for (let checkbox of checkboxesFiltro) {
+//     checkbox.onclick = () => {
+//         for (card of cards) {
+//             if (card.dataset.edad === checkbox.dataset.edad) {
+//                 card.classList.remove('hidden')
+//             }
+//             else if (checkbox.dataset.edad === "todos") {
+//                 card.classList.remove('hidden')
+//             }
+//             else {
+//                 card.classList.add('hidden')
+//             }
+//         }
+//     }
+// }
 
+//FILTRO POR BOTON EDAD (SOLUCION FUNCIONALIZADA)//
+for (checkbox of checkboxesFiltro) {
+    checkbox.onclick = () => {
+        filtrarPorEdad()
+    }
+}
+
+const checkboxSeleccionado = () => {
+    for (checkbox of checkboxesFiltro) {
+        if (checkbox.checked) {
+            return true
+        }
+    }
+}
+
+const checkboxYEdadCoinciden = () => {
+    const edad = card.dataset.edad 
+    for (checkbox of checkboxesFiltro) {
+        if (checkbox.checked && checkbox.value === edad) {
+            return true
+        }
+        else if (checkbox.checked && checkbox.value === "todos") {
+            console.log('hola')
+            card.classList.remove('hidden')
+        }
+    }
+}
+
+const filtrarPorEdad = () => {
+    for (card of cards) {
+        card.classList.add('hidden')
+        if (checkboxSeleccionado()) {
+            if(checkboxYEdadCoinciden()) {
+                card.classList.remove('hidden')
+            }
+        }
+        else {
+            card.classList.remove('hidden')
+        }
+    }
+}
+
+
+// FILTRO POR RADIO SEXO (MI SOLUCION)//
 for (checkbox of checkboxSexo) {
     checkbox.onclick = () => {
         filtrarPorSexo()
     }
 }
 
-const checkboxSeleccionado = () => {
+const radioSeleccionado = () => {
     for (checkbox of checkboxSexo) {
         if (checkbox.checked) {
             return true
@@ -64,8 +103,8 @@ const checkboxYSexoCoinciden = () => {
 const filtrarPorSexo = () => {
     for (card of cards) {
         card.classList.add('hidden')
-        if (checkboxSeleccionado) {
-            if (checkboxYSexoCoinciden(card)) {
+        if (radioSeleccionado()) {
+            if (checkboxYSexoCoinciden()) {
                 card.classList.remove('hidden')
             }
         }
